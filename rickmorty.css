@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "RM";
+  src: url("./get_schwifty.ttf");
+}
+.head {
+  color: rgb(7, 168, 77);
+  background-color: rgb(54, 53, 53);
+  padding: 15px;
+  font-family: "RM";
+  font-size: 25px;
+}
+body {
+  background-image: url(https://wallpapers.com/images/featured/rick-and-morty-cool-pictures-t3ynu5ly9m7jq6e2.jpg);
+  background-size: cover;
+}
+.characters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  text-align: left;
+}
+.characters > div {
+  /* padding: 10px; */
+  border-radius: 10px;
+  margin: 10px;
+  background-color: white;
+  width: 19%;
+  text-align: center;
+}
+.characters > div > img {
+  width: 100%;
+  border-radius: 10px;
+}
+.characters > div > button {
+  width: 80%;
+  height: 30px;
+  margin-bottom: 20px;
+  color: black;
+  background-color: white;
+  border-color: green;
+  font-family: "RM";
+}
+.characters > div > p {
+  font-size: large;
+  font-family: "RM";
+  text-align: left;
+  margin-left: 37px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 20px;
+  margin: 20px;
+}
+.pagination p {
+  color: white;
+  margin: 10px;
+  font-family: "RM";
+}
+.pagination button {
+  border-radius: 50%;
+  width: 70px;
+  height: 40px;
+  background-color: rgb(7, 168, 77);
+  color: white;
+  font-family: "RM";
+  font-size: 15px;
+}
