@@ -3,6 +3,7 @@ const charContainer = document.querySelector(".characters");
 const prevBtn = document.querySelector(".prevBtn");
 const nextBtn = document.querySelector(".nextBtn");
 const counter = document.querySelector(".counter");
+const headButton = document.querySelector(".headBtn");
 let currentPage = 1;
 
 function getCharacters(page = 1) {
@@ -33,18 +34,38 @@ function showCharacters(data) {
     charDiv.append(charBtn);
 
     charContainer.append(charDiv);
+
+    const infoBox = document.createElement("div");
+    infoBox.className = "infoBox";
+    infoBox.innerHTML = `ID: ${e.id}<br> Name: ${e.name} <br> Status: ${e.status} <br> Species: ${e.species} <br> Gender: ${e.gender}`;
+
     charBtn.addEventListener("click", function () {
-      if (charBtn.style.backgroundColor === "green") {
+      if (charBtn.style.backgroundColor === "rgb(7, 168, 77)") {
         charBtn.style.backgroundColor = "";
       } else {
-        charBtn.style.backgroundColor = "green";
+        charBtn.style.backgroundColor = "rgb(7, 168, 77)";
       }
     });
-    charDiv.addEventListener("click", function () {
-      console.log(e);
+
+    charImg.addEventListener("click", function () {
+      //prikaz infoboxa na click
+      if (infoBox.style.display === "block") {
+        infoBox.style.display = "none";
+      } else {
+        infoBox.style.display = "block";
+      }
+    });
+    charDiv.append(infoBox);
+
+    charDiv.addEventListener("mouseenter", function () {
+      charDiv.style.width = "20%";
+    });
+    charDiv.addEventListener("mouseleave", function () {
+      charDiv.style.width = "19%";
     });
   });
 }
+
 function updatePagination(info) {
   prevBtn.disabled = currentPage === 1;
   nextBtn.disabled = currentPage === info.pages;
@@ -62,6 +83,11 @@ prevBtn.addEventListener("click", function () {
     getCharacters(currentPage);
     counter.textContent = currentPage;
   }
+});
+headButton.addEventListener("click", function () {
+  return (
+    getCharacters((currentPage = 1)), (counter.textContent = currentPage = 1)
+  );
 });
 
 window.addEventListener("load", getCharacters);

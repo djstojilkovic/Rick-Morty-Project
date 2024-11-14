@@ -10,13 +10,21 @@
 .head {
   color: rgb(7, 168, 77);
   background-color: rgb(54, 53, 53);
-  padding: 15px;
   font-family: "RM";
   font-size: 25px;
 }
+.headBtn {
+  border: none;
+  color: rgb(7, 168, 77);
+  background-color: rgb(54, 53, 53);
+  padding: 15px;
+  font-family: "RM";
+  font-size: 25px;
+  cursor: pointer;
+}
 body {
   background-image: url(https://wallpapers.com/images/featured/rick-and-morty-cool-pictures-t3ynu5ly9m7jq6e2.jpg);
-  background-size: cover;
+  /* background-size: cover; */
 }
 .characters {
   display: flex;
@@ -26,16 +34,17 @@ body {
   text-align: left;
 }
 .characters > div {
-  /* padding: 10px; */
   border-radius: 10px;
   margin: 10px;
   background-color: white;
   width: 19%;
   text-align: center;
+  height: fit-content;
 }
 .characters > div > img {
   width: 100%;
   border-radius: 10px;
+  cursor: pointer;
 }
 .characters > div > button {
   width: 80%;
@@ -43,8 +52,9 @@ body {
   margin-bottom: 20px;
   color: black;
   background-color: white;
-  border-color: green;
+  border-color: rgb(7, 168, 77);
   font-family: "RM";
+  cursor: pointer;
 }
 .characters > div > p {
   font-size: large;
@@ -72,4 +82,13 @@ body {
   color: white;
   font-family: "RM";
   font-size: 15px;
+  cursor: pointer;
+}
+.infoBox {
+  font-family: "RM";
+  background-color: rgb(7, 168, 77);
+  color: white;
+  border-radius: 5px;
+  display: none;
+  padding: 10px;
 }
