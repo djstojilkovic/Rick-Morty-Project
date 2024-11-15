@@ -5,6 +5,9 @@ const nextBtn = document.querySelector(".nextBtn");
 const counter = document.querySelector(".counter");
 const headButton = document.querySelector(".headBtn");
 let currentPage = 1;
+if (!window.localStorage.getItem("showLiked")) {
+  window.localStorage.setItem("showLiked", "");
+}
 
 function getCharacters(page = 1) {
   fetch(`${URL}?page=${page}`)
@@ -32,6 +35,16 @@ function showCharacters(data) {
     const charBtn = document.createElement("button");
     charBtn.innerHTML = "Like";
     charDiv.append(charBtn);
+    let getLiked = window.localStorage.getItem("showLiked");
+    getLiked = getLiked.split(",");
+
+    for (let i = 0; i < getLiked.length; i++) {
+      if (parseInt(getLiked[i]) === e.id) {
+        charBtn.style.backgroundColor = "rgb(7, 168, 77)";
+      } else if (!charBtn.style.backgroundColor === "rgb(7, 168, 77)") {
+        charBtn.style.backgroundColor = "";
+      }
+    }
 
     charContainer.append(charDiv);
 
@@ -41,8 +54,21 @@ function showCharacters(data) {
 
     charBtn.addEventListener("click", function () {
       if (charBtn.style.backgroundColor === "rgb(7, 168, 77)") {
+        let pom = window.localStorage.getItem("showLiked");
+        pom = pom.split(",");
+        for (let i = 0; i < pom.length; i++) {
+          if (parseInt(pom[i]) === e.id) {
+            pom.splice(i, 1);
+          }
+        }
+        window.localStorage.removeItem("showLiked");
+        window.localStorage.setItem("showLiked", pom);
         charBtn.style.backgroundColor = "";
       } else {
+        let pom = window.localStorage.getItem("showLiked");
+        pom += `${e.id},`;
+        window.localStorage.removeItem("showLiked");
+        window.localStorage.setItem("showLiked", pom);
         charBtn.style.backgroundColor = "rgb(7, 168, 77)";
       }
     });
