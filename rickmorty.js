@@ -5,12 +5,13 @@ const nextBtn = document.querySelector(".nextBtn");
 const counter = document.querySelector(".counter");
 const headButton = document.querySelector(".headBtn");
 let currentPage = 1;
+//prikaz showliked-a u localstorage-u(ako ga nema na local storageu, setuj"showliked, vrednost-koja je ovde prazan string"")
 if (!window.localStorage.getItem("showLiked")) {
   window.localStorage.setItem("showLiked", "");
 }
 
 function getCharacters(page = 1) {
-  fetch(`${URL}?page=${page}`)
+  fetch(`${URL}?page=${page}`) //da bi mogli da ubacimo paginaciju
     .then((response) => response.json())
     .then((data) => {
       showCharacters(data);
@@ -19,10 +20,9 @@ function getCharacters(page = 1) {
 }
 
 function showCharacters(data) {
-  console.log(data.results);
   const newCharsArray = data.results.slice(0, 20);
 
-  charContainer.innerHTML = "";
+  charContainer.innerHTML = ""; //bitno za paginaciju, na klik dugmeta za menjanje stranice pojavljuje se novih 20 karaktera
 
   newCharsArray.forEach((e) => {
     const charImg = document.createElement("img");
@@ -35,9 +35,10 @@ function showCharacters(data) {
     const charBtn = document.createElement("button");
     charBtn.innerHTML = "Like";
     charDiv.append(charBtn);
+
+    //varijabla getLiked(prikazuje showLiked i splituje po zarezu),u for-u i if-u da nakon refresha ostane likeovano dugme(zelena boja)
     let getLiked = window.localStorage.getItem("showLiked");
     getLiked = getLiked.split(",");
-
     for (let i = 0; i < getLiked.length; i++) {
       if (parseInt(getLiked[i]) === e.id) {
         charBtn.style.backgroundColor = "rgb(7, 168, 77)";
@@ -52,6 +53,7 @@ function showCharacters(data) {
     infoBox.className = "infoBox";
     infoBox.innerHTML = `ID: ${e.id}<br> Name: ${e.name} <br> Status: ${e.status} <br> Species: ${e.species} <br> Gender: ${e.gender}`;
 
+    //uvodjenje pomocne varijable za getovanje i setovanje showLiked-a u local storage-u
     charBtn.addEventListener("click", function () {
       if (charBtn.style.backgroundColor === "rgb(7, 168, 77)") {
         let pom = window.localStorage.getItem("showLiked");
